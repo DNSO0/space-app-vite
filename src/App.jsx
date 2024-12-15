@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import GlobalStyles from "./components/GlobalStyles"
+import Cabecera from "./components/Cabecera"
+import CampoTextoConIcono from "./components/CampoTexto"
 
 const FondoGradiente = styled.div`
 background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -14,6 +16,7 @@ function App() {
     <>
       <FondoGradiente>
         <GlobalStyles />
+        <Cabecera />       
       </FondoGradiente>
     </>
   )
