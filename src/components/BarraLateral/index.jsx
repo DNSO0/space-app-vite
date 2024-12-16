@@ -1,28 +1,35 @@
-import styled from "styled-components"
-import ItemNavegacion from "./ItemNavegacion"
+import styled from "styled-components";
+import ItemNavegacion from "./ItemNavegacion";
 
 const ListaEstilizada = styled.ul`
     margin: 0;
     padding: 0;
     list-style: none;
+`;
 
-`
+const BarraLateralContainer = styled.aside`
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    width: 250px; /* Ancho fijo para la barra lateral */
+    height: calc(100vh - 60px); /* Ajusta la altura para que ocupe el espacio restante debajo de la cabecera */
+    
+`;
 
-const BarraLateral=()=>{
-    return(
-        <aside>
+const BarraLateral = () => {
+    return (
+        <BarraLateralContainer>
             <nav>
                 <ListaEstilizada>
-                    <ItemNavegacion iconoActivo="iconos/home-activo.png" iconoInactivo="iconos/home-inactivo.png" activo >
+                    <ItemNavegacion iconoActivo="iconos/home-activo.png" iconoInactivo="iconos/home-inactivo.png" activo>
                         Inicio
                     </ItemNavegacion>
-                    <ItemNavegacion iconoActivo="iconos/mas-visas-activo.png" iconoInactivo="iconos/mas-vistas-inactivo.png" >
+                    <ItemNavegacion iconoActivo="iconos/mas-visas-activo.png" iconoInactivo="iconos/mas-vistas-inactivo.png">
                         Más visitados
                     </ItemNavegacion>
                 </ListaEstilizada>
             </nav>
-        </aside>
-    )
-}
+        </BarraLateralContainer>
+    );
+};
 
-export default BarraLateral
+export default BarraLateral;
