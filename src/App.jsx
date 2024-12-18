@@ -3,6 +3,7 @@ import GlobalStyles from "./components/GlobalStyles";
 import Cabecera from "./components/Cabecera";
 import BarraLateral from "./components/BarraLateral";
 import BannerEstilizado from "./components/BannerEstilizado";
+import Galeria from "./components/Galeria";
 
 const FondoGradiente = styled.div`
   background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -31,6 +32,8 @@ const ContenedorPrincipal = styled.div`
   padding: 20px; /* Espaciado alrededor del contenido */
 `;
 
+
+
 function App() {
   return (
     <FondoGradiente>
@@ -42,6 +45,7 @@ function App() {
         </ContenedorBarraLateral>
         <ContenedorPrincipal>
           <BannerEstilizado />
+          <Galeria />
         </ContenedorPrincipal>
       </ContenedorContenido>
     </FondoGradiente>
