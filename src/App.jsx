@@ -27,11 +27,16 @@ const ContenedorPrincipal = styled.div`
   flex: 1; /* Ocupa el espacio restante */
   display: flex;
   flex-direction: column; /* Coloca el banner en columna */
-  align-items: center; /* Centra el contenido horizontalmente */
+  //align-items: center; /* Centra el contenido horizontalmente */
   justify-content: flex-start; /* Alinea el contenido al inicio */
   padding: 20px; /* Espaciado alrededor del contenido */
 `;
 
+const ContenidoGaleria = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`
 
 
 function App() {
@@ -45,7 +50,9 @@ function App() {
         </ContenedorBarraLateral>
         <ContenedorPrincipal>
           <BannerEstilizado />
-          <Galeria />
+          <ContenidoGaleria>
+            <Galeria />
+          </ContenidoGaleria>
         </ContenedorPrincipal>
       </ContenedorContenido>
     </FondoGradiente>
