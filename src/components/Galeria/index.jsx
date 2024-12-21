@@ -7,6 +7,7 @@ import Imagen from "./Imagen"
 const GaleriaContainer = styled.div`
 display: flex;
 gap: 24px;
+
 `
 
 const SeccionFluida = styled.section`

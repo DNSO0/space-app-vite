@@ -9,10 +9,10 @@ const ListaEstilizada = styled.ul`
 
 const BarraLateralContainer = styled.aside`
     display: flex;
-    flex-direction: column; /* Coloca los elementos en columna */
-    width: 250px; /* Ancho fijo para la barra lateral */
-    height: calc(100vh - 60px); /* Ajusta la altura para que ocupe el espacio restante debajo de la cabecera */
-    
+    flex-direction: column; 
+    width: 250px; 
+    height: calc(100vh - 60px); 
+    padding-left: 12px;
 `;
 
 const BarraLateral = () => {

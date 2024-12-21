@@ -16,26 +16,26 @@ const FondoGradiente = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-direction: column; /* Organiza los elementos en columna */
+  flex-direction: column; 
 `;
 
 const ContenedorContenido = styled.div`
-  display: flex; /* Coloca la barra lateral y el contenido uno al lado del otro */
-  flex: 1; /* Ocupa el espacio restante */
+  display: flex; 
+  flex: 1; 
 `;
 
 const ContenedorBarraLateral = styled.div`
-  width: 212px; /* Ancho fijo para la barra lateral, igual al ancho del logo */
-  height: calc(100vh - 60px); /* Ajusta la altura para que ocupe el espacio restante debajo de la cabecera */
+  width: 212px; 
+  height: calc(100vh - 60px); 
 `;
 
 const ContenedorPrincipal = styled.div`
-  flex: 1; /* Ocupa el espacio restante */
+  flex: 1; 
   display: flex;
-  flex-direction: column; /* Coloca el banner en columna */
-  //align-items: center; /* Centra el contenido horizontalmente */
-  justify-content: flex-start; /* Alinea el contenido al inicio */
-  padding: 20px; /* Espaciado alrededor del contenido */
+  flex-direction: column; 
+  //align-items: center; 
+  justify-content: flex-start; 
+  padding: 20px; 
 `;
 
 const ContenidoGaleria = styled.section`
