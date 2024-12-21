@@ -5,8 +5,10 @@ import BarraLateral from "./components/BarraLateral";
 import BannerEstilizado from "./components/BannerEstilizado";
 import Galeria from "./components/Galeria";
 import fotos from "./fotos.json"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalZoom from "./components/ModalZoom";
+import Tags from "./components/Galeria/Tags";
+
 
 const FondoGradiente = styled.div`
   background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -45,7 +47,18 @@ const ContenidoGaleria = styled.section`
 const App = ()=> {
 
   const [fotosDeGaleria, setFotosDeGaleria] = useState(fotos)
+  const [filtro, setFiltro] = useState('')
+  const [tag, setTag] = useState(0)
   const[fotoSeleccionada, setFotoSeleccionada] = useState(null)
+
+  useEffect(() => {
+    const fotosFiltradas = fotos.filter(foto => {
+      const filtroPorTag = !tag || foto.tagId === tag;
+      const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().includes(filtro.toLowerCase())
+      return filtroPorTag && filtroPorTitulo
+    })
+    setFotosDeGaleria(fotosFiltradas)
+  }, [filtro, tag])
 
   const alAlternarFavorito = (foto) => {
 
@@ -68,7 +81,10 @@ const App = ()=> {
   return (
     <FondoGradiente>
       <GlobalStyles />
-      <Cabecera />
+      <Cabecera 
+          filtro={filtro}
+          setFiltro={setFiltro}
+      />
       <ContenedorContenido>
         <ContenedorBarraLateral>
           <BarraLateral />
@@ -76,7 +92,13 @@ const App = ()=> {
         <ContenedorPrincipal>
           <BannerEstilizado />
           <ContenidoGaleria>
-            <Galeria fotos={fotosDeGaleria} alSeleccionarFoto={foto=>setFotoSeleccionada(foto)} alAlternarFavorito={alAlternarFavorito} />
+            
+            <Galeria 
+            fotos={fotosDeGaleria} 
+            alSeleccionarFoto={foto=>setFotoSeleccionada(foto)} 
+            alAlternarFavorito={alAlternarFavorito}
+            setTag={setTag} 
+            />
           </ContenidoGaleria>
         </ContenedorPrincipal>
       </ContenedorContenido>

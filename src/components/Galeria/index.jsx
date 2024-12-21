@@ -20,11 +20,11 @@ const ImagenesContainer = styled.section`
 `
 
 
-const Galeria = ({ fotos = [], alSeleccionarFoto,alAlternarFavorito }) => {
+const Galeria = ({ fotos = [], setTag, alSeleccionarFoto,alAlternarFavorito }) => {
 
     return (
         <>
-            <Tag />
+            <Tag  setTag={setTag}  />
             <GaleriaContainer>
                 <SeccionFluida>
                     <Titulo>Navegue por la galería</Titulo>
