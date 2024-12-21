@@ -47,6 +47,24 @@ const App = ()=> {
   const [fotosDeGaleria, setFotosDeGaleria] = useState(fotos)
   const[fotoSeleccionada, setFotoSeleccionada] = useState(null)
 
+  const alAlternarFavorito = (foto) => {
+
+    if (foto.id === fotoSeleccionada?.id) {
+      setFotoSeleccionada({
+        ...fotoSeleccionada,
+        favorita: !fotoSeleccionada.favorita
+      })
+
+    }
+
+    setFotosDeGaleria(fotosDeGaleria.map(fotoDeGaleria => {
+      return {
+        ...fotoDeGaleria,
+        favorita: fotoDeGaleria.id === foto.id ? !foto.favorita : fotoDeGaleria.favorita
+      }
+    }))
+  }
+
   return (
     <FondoGradiente>
       <GlobalStyles />
@@ -58,7 +76,7 @@ const App = ()=> {
         <ContenedorPrincipal>
           <BannerEstilizado />
           <ContenidoGaleria>
-            <Galeria fotos={fotosDeGaleria} alSeleccionarFoto={foto=>setFotoSeleccionada(foto)} />
+            <Galeria fotos={fotosDeGaleria} alSeleccionarFoto={foto=>setFotoSeleccionada(foto)} alAlternarFavorito={alAlternarFavorito} />
           </ContenidoGaleria>
         </ContenedorPrincipal>
       </ContenedorContenido>
