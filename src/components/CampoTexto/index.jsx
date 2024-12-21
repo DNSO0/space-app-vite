@@ -31,10 +31,10 @@ const Icono = styled.img`
   height: 20px; 
 `;
 
-const CampoTextoConIcono = () => {
+const CampoTextoConIcono = ({ setFiltro }) => {
   return (
     <CampoTextoConIconoEstilizado>
-      <InputEstilizado type="text" placeholder="¿Qué estás buscando?" />
+      <InputEstilizado  onChange={(evento) => setFiltro(evento.target.value)} type="text" placeholder="¿Qué estás buscando?" />
       <Icono src="/img/search.png" alt="Buscar" />
     </CampoTextoConIconoEstilizado>
   );

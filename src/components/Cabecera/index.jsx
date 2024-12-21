@@ -16,12 +16,12 @@ const InputContainer = styled.div`
     width: calc(50%); 
 `;
 
-const Cabecera = () => {
+const Cabecera = ({ setFiltro }) => {
     return (
         <HeaderEstilizado>
             <Logo src="img/logo.png" alt="Logo de Space App" />
             <InputContainer>
-                <CampoTextoConIcono />
+            <CampoTextoConIcono setFiltro={setFiltro} />
             </InputContainer>
         </HeaderEstilizado>
     );

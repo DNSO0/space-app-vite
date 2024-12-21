@@ -8,6 +8,7 @@ import fotos from "./fotos.json"
 import { useState, useEffect } from "react";
 import ModalZoom from "./components/ModalZoom";
 import Tags from "./components/Galeria/Tags";
+import CampoTextoConIcono from "./components/CampoTexto";
 
 
 const FondoGradiente = styled.div`
