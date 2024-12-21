@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import ModalZoom from "./components/ModalZoom";
 import Tags from "./components/Galeria/Tags";
 import CampoTextoConIcono from "./components/CampoTexto";
+import Footer from "./components/Footer/Footer";
 
 
 const FondoGradiente = styled.div`
@@ -107,6 +108,7 @@ const App = ()=> {
           alCerrar={() => setFotoSeleccionada(null)} 
           alAlternarFavorito={alAlternarFavorito}
            />
+      <Footer />
     </FondoGradiente>
   );
 }
