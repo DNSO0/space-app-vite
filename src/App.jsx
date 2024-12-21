@@ -81,7 +81,8 @@ const App = ()=> {
         </ContenedorPrincipal>
       </ContenedorContenido>
       <ModalZoom foto={fotoSeleccionada}
-          alCerrar={() => setFotoSeleccionada(null)}
+          alCerrar={() => setFotoSeleccionada(null)} 
+          alAlternarFavorito={alAlternarFavorito}
            />
     </FondoGradiente>
   );
