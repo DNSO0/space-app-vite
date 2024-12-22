@@ -4,12 +4,13 @@ import Cabecera from "./components/Cabecera";
 import BarraLateral from "./components/BarraLateral";
 import BannerEstilizado from "./components/BannerEstilizado";
 import Galeria from "./components/Galeria";
-import fotos from "./fotos.json"
 import { useState, useEffect } from "react";
 import ModalZoom from "./components/ModalZoom";
 import Tags from "./components/Galeria/Tags";
 import CampoTextoConIcono from "./components/CampoTexto";
 import Footer from "./components/Footer/Footer";
+import Cargando from "./components/Cargando"
+
 
 
 const FondoGradiente = styled.div`
@@ -48,13 +49,14 @@ const ContenidoGaleria = styled.section`
 
 const App = ()=> {
 
-  const [fotosDeGaleria, setFotosDeGaleria] = useState(fotos)
+  const [fotosDeGaleria, setFotosDeGaleria] = useState([])
   const [filtro, setFiltro] = useState('')
   const [tag, setTag] = useState(0)
-  const[fotoSeleccionada, setFotoSeleccionada] = useState(null)
+  const [fotoSeleccionada, setFotoSeleccionada] = useState(null)
+  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    const fotosFiltradas = fotos.filter(foto => {
+    const fotosFiltradas = fotosDeGaleria.filter(foto => {
       const filtroPorTag = !tag || foto.tagId === tag;
       const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().includes(filtro.toLowerCase())
       return filtroPorTag && filtroPorTitulo
@@ -80,6 +82,25 @@ const App = ()=> {
     }))
   }
 
+  useEffect(() => {
+    const getData = async () => {
+      setCargando(true); // Iniciar carga
+      try {
+        const res = await fetch('http://localhost:3000/fotos');
+        if (!res.ok) {
+          throw new Error('Error en la respuesta de la API');
+        }
+        const data = await res.json();
+        setFotosDeGaleria(data); // Establecer las fotos
+      } catch (error) {
+        console.error("Error al cargar las fotos:", error);
+      } finally {
+        setCargando(false); // Finalizar carga
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <FondoGradiente>
       <GlobalStyles />
@@ -94,13 +115,16 @@ const App = ()=> {
         <ContenedorPrincipal>
           <BannerEstilizado />
           <ContenidoGaleria>
-            
+            {
+              fotosDeGaleria.length == 0 ? 
+              <Cargando /> :
             <Galeria 
             fotos={fotosDeGaleria} 
             alSeleccionarFoto={foto=>setFotoSeleccionada(foto)} 
             alAlternarFavorito={alAlternarFavorito}
             setTag={setTag} 
             />
+            }
           </ContenidoGaleria>
         </ContenedorPrincipal>
       </ContenedorContenido>
