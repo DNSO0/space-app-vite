@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRef } from "react";
 
 const CampoTextoConIconoEstilizado = styled.div`
   position: relative;
@@ -32,10 +33,17 @@ const Icono = styled.img`
 `;
 
 const CampoTextoConIcono = ({ setFiltro }) => {
+  const cajaConsulta = useRef(null);
   return (
     <CampoTextoConIconoEstilizado>
-      <InputEstilizado  onChange={(evento) => setFiltro(evento.target.value)} type="text" placeholder="¿Qué estás buscando?" />
-      <Icono src="/img/search.png" alt="Buscar" />
+      <InputEstilizado ref={cajaConsulta}
+        type="text" placeholder="¿Qué estás buscando?" 
+
+      //  onChange={(evento) => setFiltro(evento.target.value)} 
+      />
+
+      <Icono src="/img/search.png" alt="Buscar" 
+      onClick={() => setFiltro(cajaConsulta.current.value)} />
     </CampoTextoConIconoEstilizado>
   );
 };
