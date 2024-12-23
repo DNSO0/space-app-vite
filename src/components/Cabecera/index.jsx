@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import CampoTextoConIcono from "../CampoTexto";
+import { useContext } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const HeaderEstilizado = styled.header`
     padding: 60px 20px;
@@ -16,7 +18,9 @@ const InputContainer = styled.div`
     width: calc(50%); 
 `;
 
-const Cabecera = ({ setFiltro }) => {
+const Cabecera = () => {
+    const {setFiltro} = useContext(GlobalContext);
+
     return (
         <HeaderEstilizado>
             <Logo src="img/logo.png" alt="Logo de Space App" />
