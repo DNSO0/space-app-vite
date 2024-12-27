@@ -1,51 +1,51 @@
-import styled from "styled-components";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { styled } from "styled-components"
+import search from './search.png'
+import { GlobalContext } from "../../context/GlobalContext";
 
-const CampoTextoConIconoEstilizado = styled.div`
-  position: relative;
-  width: 100%;
+
+const ContainerEstilizado = styled.div`
+    position: relative;
+    display: inline-block;
 `;
 
-const InputEstilizado = styled.input`
-  width: 100%;
-  padding: 10px 40px; 
-  border: 2px solid rgb(78, 70, 128); 
-  border-radius: 4px;
-  font-size: 16px;
-  outline: none;
-  background: transparent;
-  color: white;
-  box-sizing: border-box;
- 
-  
-  &::placeholder {
-    color: rgb(255, 255, 255); 
-  }
+
+const CampoTextoEstilizado = styled.input`
+    height: 56px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: #C98CF1;
+    background: transparent;
+    box-sizing: border-box;
+    width: 566px;
+    color: #D9D9D9;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    outline: none;
+`
+
+const IconoLupa = styled.img`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 38px !important;
+    height: 38px;
 `;
 
-const Icono = styled.img`
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px; 
-`;
+const CampoTexto = () => {
+    const cajaConsulta = useRef(null);
+    const { dispatch } = useContext(GlobalContext);
 
-const CampoTextoConIcono = ({ setFiltro }) => {
-  const cajaConsulta = useRef(null);
-  return (
-    <CampoTextoConIconoEstilizado>
-      <InputEstilizado ref={cajaConsulta}
-        type="text" placeholder="¿Qué estás buscando?" 
+    return (
+        <ContainerEstilizado>
+            <CampoTextoEstilizado ref={cajaConsulta} type="text" placeholder="¿Qué estás buscando?" />
+            <IconoLupa src={search} alt="ícono de lupa" onClick={() => {
+                dispatch({ type: 'SET_CONSULTA', payload: cajaConsulta.current.value })
+            }} />
+        </ContainerEstilizado>
+    )
+}
 
-      //  onChange={(evento) => setFiltro(evento.target.value)} 
-      />
-
-      <Icono src="/img/search.png" alt="Buscar" 
-      onClick={() => setFiltro(cajaConsulta.current.value)} />
-    </CampoTextoConIconoEstilizado>
-  );
-};
-
-export default CampoTextoConIcono;
+export default CampoTexto;

@@ -10,7 +10,6 @@ import Cargando from "../Cargando"
 const GaleriaContainer = styled.div`
 display: flex;
 gap: 24px;
-
 `
 
 const SeccionFluida = styled.section`
@@ -26,31 +25,31 @@ const ImagenesContainer = styled.section`
 
 const Galeria = () => {
 
-    const {filtro, fotosDeGaleria, setTag, alSeleccionarFoto, alAlternarFavorito, setFotoSeleccionada} = useContext(GlobalContext);
-    
+    const { state } = useContext(GlobalContext);
+
     return (
-      
+        state.fotosDeGaleria.length == 0 ?
+            <Cargando></Cargando> :
+            <>
+                <Tag />
+                <GaleriaContainer>
+                    <SeccionFluida>
+                        <Titulo>Navegue por la galería</Titulo>
+                        <ImagenesContainer>
+                            {state.fotosDeGaleria.filter(foto => {
+                                return state.consulta == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
+                                    .includes(state.consulta.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, ""))
+                            })
+                                .map(foto => <Imagen
+                                    key={foto.id}
+                                    foto={foto} />)
+                            }
+                        </ImagenesContainer>
+                    </SeccionFluida>
+                    <Populares />
 
-        fotosDeGaleria.length == 0 ?
-    <Cargando></Cargando> :
-        <>
-            <Tag  setTag={setTag}  />
-            <GaleriaContainer>
-                <SeccionFluida>
-                    <Titulo>Navegue por la galería</Titulo>
-                    <ImagenesContainer>
-                        {fotosDeGaleria.map(foto => <Imagen
-                        alAlternarFavorito= {alAlternarFavorito}
-                        alSolicitarZoom={foto => setFotoSeleccionada(foto)}
-                            key={foto.id}
-                            foto={foto} />)
-                        }
-                    </ImagenesContainer>
-                </SeccionFluida>
-                <Populares />
-
-            </GaleriaContainer>
-        </>
+                </GaleriaContainer>
+            </>
     )
 }
 
